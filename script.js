@@ -1,6 +1,6 @@
 async function getWeather(location) {
     try {
-        const response = await fetch('http://api.weatherapi.com/v1/forecast.json?q=' + location + '&days=4&key=d88b6217605b468089c214057232707')
+        const response = await fetch('http://api.weatherapi.com/v1/forecast.json?q=' + location + '&days=5&key=d88b6217605b468089c214057232707')
         const weatherData = await response.json();
         console.log(weatherData);
         weatherDisplay(weatherData);
@@ -39,15 +39,15 @@ function threeDayDisplay(weatherData) {
     const iconTwo = document.querySelector('.forecast_img2');
     const iconThree = document.querySelector('.forecast_img3');
 
-    dayOne.textContent = formatWeekDay(weatherData.forecast.forecastday[1].date);
-    dayTwo.textContent = formatWeekDay(weatherData.forecast.forecastday[2].date);
-    dayThree.textContent = formatWeekDay(weatherData.forecast.forecastday[3].date);
-    forecastOne.textContent = 'Day ' + weatherData.forecast.forecastday[1].day.maxtemp_f + '°F • Night ' + weatherData.forecast.forecastday[1].day.mintemp_f + '°F';
-    forecastTwo.textContent = 'Day ' + weatherData.forecast.forecastday[2].day.maxtemp_f + '°F • Night ' + weatherData.forecast.forecastday[2].day.mintemp_f + '°F';
-    forecastThree.textContent = 'Day ' + weatherData.forecast.forecastday[3].day.maxtemp_f + '°F • Night ' + weatherData.forecast.forecastday[3].day.mintemp_f + '°F';
-    iconOne.src = weatherData.forecast.forecastday[1].day.condition.icon;
-    iconTwo.src = weatherData.forecast.forecastday[2].day.condition.icon;
-    iconThree.src = weatherData.forecast.forecastday[3].day.condition.icon;
+    dayOne.textContent = formatWeekDay(weatherData.forecast.forecastday[2].date);
+    dayTwo.textContent = formatWeekDay(weatherData.forecast.forecastday[3].date);
+    dayThree.textContent = formatWeekDay(weatherData.forecast.forecastday[4].date);
+    forecastOne.textContent = 'Day ' + weatherData.forecast.forecastday[2].day.maxtemp_f + '°F • Night ' + weatherData.forecast.forecastday[1].day.mintemp_f + '°F';
+    forecastTwo.textContent = 'Day ' + weatherData.forecast.forecastday[3].day.maxtemp_f + '°F • Night ' + weatherData.forecast.forecastday[2].day.mintemp_f + '°F';
+    forecastThree.textContent = 'Day ' + weatherData.forecast.forecastday[4].day.maxtemp_f + '°F • Night ' + weatherData.forecast.forecastday[3].day.mintemp_f + '°F';
+    iconOne.src = weatherData.forecast.forecastday[2].day.condition.icon;
+    iconTwo.src = weatherData.forecast.forecastday[3].day.condition.icon;
+    iconThree.src = weatherData.forecast.forecastday[4].day.condition.icon;
 }
 
 function formatDate(inputDate) {
@@ -80,5 +80,13 @@ function formatWeekDay(input) {
     const outputDay = reformated.toLocaleString('en-us', options);
     return outputDay;
 }
+
+const search = document.querySelector('.search');
+
+search.addEventListener('click', () => {
+    const result = document.querySelector('.result');
+    let newLocation = result.value;
+    getWeather(newLocation);
+})
 
 getWeather('virginia');
