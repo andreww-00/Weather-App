@@ -5,7 +5,8 @@ async function getWeather(location) {
         console.log(weatherData);
         weatherDisplay(weatherData);
         threeDayDisplay(weatherData);
-    } catch (error) {
+    }
+    catch (error) {
         console.log('error');
     }
 }
@@ -18,12 +19,18 @@ function weatherDisplay(weatherData) {
     const highLow = document.querySelector('.highLow');
     const conditionImage = document.querySelector('.condition_image');
     const conditionText = document.querySelector('.condition_text');
+    const check = document.querySelector('.checkbox');
 
     location.textContent = weatherData.location.name + ', ' + weatherData.location.region;
     date.textContent = formatDate(weatherData.location.localtime);
     time.textContent = formatTime(weatherData.location.localtime);
+    if (!check.checked) {
     current_temp.textContent = weatherData.current.temp_f + '°F';
     highLow.textContent = 'Day ' + weatherData.forecast.forecastday[0].day.maxtemp_f + '°F • Night ' + weatherData.forecast.forecastday[0].day.mintemp_f + '°F';
+    } else {
+    current_temp.textContent = weatherData.current.temp_c + '°C';
+    highLow.textContent = 'Day ' + weatherData.forecast.forecastday[0].day.maxtemp_c + '°C • Night ' + weatherData.forecast.forecastday[0].day.mintemp_c + '°C';
+    }
     conditionImage.src = weatherData.current.condition.icon;
     conditionText.textContent = weatherData.current.condition.text;
 }
@@ -48,6 +55,14 @@ function threeDayDisplay(weatherData) {
     iconOne.src = weatherData.forecast.forecastday[2].day.condition.icon;
     iconTwo.src = weatherData.forecast.forecastday[3].day.condition.icon;
     iconThree.src = weatherData.forecast.forecastday[4].day.condition.icon;
+}
+
+function degreeChange() {
+    const current_temp = document.querySelector('.current_temp');
+    const highLow = document.querySelector('.highLow');
+    const forecastOne = document.querySelector('.forecastTemp1');
+    const forecastTwo = document.querySelector('.forecastTemp2');
+    const forecastThree = document.querySelector('.forecastTemp3');
 }
 
 function formatDate(inputDate) {
@@ -82,11 +97,11 @@ function formatWeekDay(input) {
 }
 
 const search = document.querySelector('.search');
-
 search.addEventListener('click', () => {
     const result = document.querySelector('.result');
     let newLocation = result.value;
     getWeather(newLocation);
-})
+})  
 
 getWeather('virginia');
+

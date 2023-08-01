@@ -14,11 +14,21 @@
         <h3>Weather Wonder</h3>
         <div class="searchContainer">
             <form action="#" onSubmit="return false;">
-                <input type="text" placeholder="Search Location..." name="search" class="result">
-                <button type="button" class="search">Submit</button>
+                <input type="text" placeholder="Search Location..." name="search" class="result" value="virginia">
+                <button type="button" class="search">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                  </svg>
+                </button>
             </form>
         </div>
-        <button>F or C</button>
+        <div class="toggle-button-cover">
+              <div class="button r" id="button-1">
+                <input type="checkbox" class="checkbox" />
+                <div class="knobs"></div>
+                <div class="layer"></div>
+              </div>
+          </div>
     </nav>
     <div class="primaryCard">
         <div class="cardContent">
@@ -35,18 +45,18 @@
     </div>
     <div class="threeDayCard">
         <div class="cardOne">
-            <p class="weekday1"></p>
-            <p class="forecastTemp1"></p>
+            <p class="weekday1 weekday"></p>
+            <p class="forecastTemp1 forecastTemp"></p>
             <img src="" alt="" class="forecast_img1">
         </div>
         <div class="cardTwo">
-            <p class="weekday2"></p>
-            <p class="forecastTemp2"></p>
+            <p class="weekday2 weekday"></p>
+            <p class="forecastTemp2 forecastTemp"></p>
             <img src="" alt="" class="forecast_img2">
         </div>
         <div class="cardThree">
-            <p class="weekday3"></p>
-            <p class="forecastTemp3"></p>
+            <p class="weekday3 weekday"></p>
+            <p class="forecastTemp3 forecastTemp"></p>
             <img src="" alt="" class="forecast_img3">
         </div>
     </div>
