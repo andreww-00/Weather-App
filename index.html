@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,18 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
+
 <body>
-    <div class="search-container">
-        <form action="#"  onSubmit="return false;">
-          <input type="text" placeholder="Search Location..." name="search" class="result">
-          <button type="button" class="search">Submit</button>
-        </form>
+    <nav>
+        <h3>Weather Wonder</h3>
+        <div class="searchContainer">
+            <form action="#" onSubmit="return false;">
+                <input type="text" placeholder="Search Location..." name="search" class="result">
+                <button type="button" class="search">Submit</button>
+            </form>
+        </div>
+        <button>F or C</button>
+    </nav>
     <div class="primaryCard">
         <div class="cardContent">
             <p class="location"></p>
@@ -26,8 +33,7 @@
             <p class="condition_text"></p>
         </div>
     </div>
-    <button>F or C</button>
-    <div class="threedaycard">
+    <div class="threeDayCard">
         <div class="cardOne">
             <p class="weekday1"></p>
             <p class="forecastTemp1"></p>
@@ -45,4 +51,5 @@
         </div>
     </div>
 </body>
+
 </html>

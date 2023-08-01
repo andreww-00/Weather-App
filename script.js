@@ -19,7 +19,7 @@ function weatherDisplay(weatherData) {
     const conditionImage = document.querySelector('.condition_image');
     const conditionText = document.querySelector('.condition_text');
 
-    location.textContent = weatherData.location.name;
+    location.textContent = weatherData.location.name + ', ' + weatherData.location.region;
     date.textContent = formatDate(weatherData.location.localtime);
     time.textContent = formatTime(weatherData.location.localtime);
     current_temp.textContent = weatherData.current.temp_f + '°F';
