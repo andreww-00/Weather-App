@@ -24,13 +24,8 @@ function weatherDisplay(weatherData) {
     location.textContent = weatherData.location.name + ', ' + weatherData.location.region;
     date.textContent = formatDate(weatherData.location.localtime);
     time.textContent = formatTime(weatherData.location.localtime);
-    if (!check.checked) {
     current_temp.textContent = weatherData.current.temp_f + '°F';
     highLow.textContent = 'Day ' + weatherData.forecast.forecastday[0].day.maxtemp_f + '°F • Night ' + weatherData.forecast.forecastday[0].day.mintemp_f + '°F';
-    } else {
-    current_temp.textContent = weatherData.current.temp_c + '°C';
-    highLow.textContent = 'Day ' + weatherData.forecast.forecastday[0].day.maxtemp_c + '°C • Night ' + weatherData.forecast.forecastday[0].day.mintemp_c + '°C';
-    }
     conditionImage.src = weatherData.current.condition.icon;
     conditionText.textContent = weatherData.current.condition.text;
 }

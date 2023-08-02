@@ -114,19 +114,18 @@ body {
 nav {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    width: 100%;
+    justify-content: space-between  ;
     color: white;
     padding: 15px;
     font-size: 20px;
     font-weight: bold;
+    min-width: 90%;
 }
 
 .searchContainer {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: 70vw;
 }
 
 .search {
@@ -135,111 +134,65 @@ nav {
     border:none;
     padding: 10px;
     cursor: pointer;
+
 }
 
-.toggle-button-cover {
-    display: table-cell;
+.switch {
     position: relative;
-    width: 8%;
-    height: 50px    ;
-    box-sizing: border-box;
-}
-
-
-
-.button-cover:before {
-    counter-increment: button-counter;
-    content: counter(button-counter);
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    color: white;
-    font-size: 12px;
-    line-height: 1;
-    padding: 5px;
-}
-
-.button-cover,
-.knobs,
-.layer {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-}
-
-.button {
-    position: relative;
-    top: 50%;
-    width: 74px;
-    height: 36px;
-    margin: -20px auto 0 auto;
-    overflow: hidden;
-}
-
-
-.button.r,
-.button.r .layer {
-    border-radius: 100px;
-}
-
-.button.b2 {
-    border-radius: 2px;
-}
-
-.checkbox {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    margin: 0;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
     opacity: 0;
-    cursor: pointer;
-    z-index: 3;
-}
-
-.knobs {
-    z-index: 2;
-}
-
-.layer {
-    width: 100%;
-    background-color: white;
-    transition: 0.3s ease all;
-    z-index: 1;
-}
-
-#button-1 .knobs:before {
-    content: "°F";
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
     position: absolute;
-    top: 4px;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
     left: 4px;
-    width: 20px;
-    height: 10px;
-    color: white;
-    font-size: 10px;
-    font-weight: bold;
-    text-align: center;
-    line-height: 1;
-    padding: 9px 4px;
-    background-color: var(--main-color);
-    border-radius: 50%;
-    transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
-}
-
-#button-1 .checkbox:checked+.knobs:before {
-    content: "°C";
-    left: 42px;
-    background-color: var(--main-color);
-}
-
-#button-1 .checkbox:checked~.layer {
-    background-color: var(--secondary-color);
-}
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
 
 form {
     text-align: center;
+    padding-right: 40px;
 }
 
 input {
@@ -249,6 +202,17 @@ input {
     padding: 10px;
 }
 
+.searchContainer > p {
+    padding: 10px;
+}
+
+.slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
 
 .primaryCard {
     display: flex;
@@ -319,4 +283,24 @@ box-shadow: 0px 0px 10px 2px rgba(139,185,255,0.51);
 .cardThree {
     padding: 0 25px;
     text-align: center;
+}
+
+@media screen and (max-width: 650px) {
+       h3 {
+        display: none;
+        justify-content: center;
+       }
+    
+        .primaryCard {
+            flex-direction: column;
+        }
+
+        .cardContent {
+            padding: 0;
+            text-align: center;
+        }
+
+        .threeDayCard {
+            flex-direction: column;
+        }
 }
