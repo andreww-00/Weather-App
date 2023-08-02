@@ -1,7 +1,11 @@
+
+let globalData = ''
+
 async function getWeather(location) {
     try {
         const response = await fetch('http://api.weatherapi.com/v1/forecast.json?q=' + location + '&days=5&key=d88b6217605b468089c214057232707')
         const weatherData = await response.json();
+        globalData = weatherData;
         console.log(weatherData);
         weatherDisplay(weatherData);
         threeDayDisplay(weatherData);
@@ -19,7 +23,6 @@ function weatherDisplay(weatherData) {
     const highLow = document.querySelector('.highLow');
     const conditionImage = document.querySelector('.condition_image');
     const conditionText = document.querySelector('.condition_text');
-    const check = document.querySelector('.checkbox');
 
     location.textContent = weatherData.location.name + ', ' + weatherData.location.region;
     date.textContent = formatDate(weatherData.location.localtime);
@@ -52,12 +55,26 @@ function threeDayDisplay(weatherData) {
     iconThree.src = weatherData.forecast.forecastday[4].day.condition.icon;
 }
 
-function degreeChange() {
+function degreeChange(weatherData) {
     const current_temp = document.querySelector('.current_temp');
     const highLow = document.querySelector('.highLow');
     const forecastOne = document.querySelector('.forecastTemp1');
     const forecastTwo = document.querySelector('.forecastTemp2');
     const forecastThree = document.querySelector('.forecastTemp3');
+
+    if (!check.checked) {
+        current_temp.textContent = weatherData.current.temp_f + '°F';
+        highLow.textContent = 'Day ' + weatherData.forecast.forecastday[0].day.maxtemp_f + '°F • Night ' + weatherData.forecast.forecastday[0].day.mintemp_f + '°F';
+        forecastOne.textContent = 'Day ' + weatherData.forecast.forecastday[2].day.maxtemp_f + '°F • Night ' + weatherData.forecast.forecastday[1].day.mintemp_f + '°F';
+        forecastTwo.textContent = 'Day ' + weatherData.forecast.forecastday[3].day.maxtemp_f + '°F • Night ' + weatherData.forecast.forecastday[2].day.mintemp_f + '°F';
+        forecastThree.textContent = 'Day ' + weatherData.forecast.forecastday[4].day.maxtemp_f + '°F • Night ' + weatherData.forecast.forecastday[3].day.mintemp_f + '°F';
+    } else if (check.checked) {
+        current_temp.textContent = weatherData.current.temp_c + '°C';
+        highLow.textContent = 'Day ' + weatherData.forecast.forecastday[0].day.maxtemp_c + '°C • Night ' + weatherData.forecast.forecastday[0].day.mintemp_c + '°C';
+        forecastOne.textContent = 'Day ' + weatherData.forecast.forecastday[2].day.maxtemp_c + '°C • Night ' + weatherData.forecast.forecastday[1].day.mintemp_c + '°C';
+        forecastTwo.textContent = 'Day ' + weatherData.forecast.forecastday[3].day.maxtemp_c + '°C • Night ' + weatherData.forecast.forecastday[2].day.mintemp_c + '°C';
+        forecastThree.textContent = 'Day ' + weatherData.forecast.forecastday[4].day.maxtemp_c + '°C • Night ' + weatherData.forecast.forecastday[3].day.mintemp_c + '°C';
+    }
 }
 
 function formatDate(inputDate) {
@@ -97,6 +114,11 @@ search.addEventListener('click', () => {
     let newLocation = result.value;
     getWeather(newLocation);
 })  
+
+const check = document.querySelector('.check');
+check.addEventListener('click', () => {
+    degreeChange(globalData);
+})
 
 getWeather('virginia');
 
